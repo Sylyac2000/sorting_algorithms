@@ -36,6 +36,9 @@ void selection_sort(int *array, size_t size)
 	int pos, temp;
 	size_t k;
 
+	if (array == NULL || size < 2)
+		return;
+
 	for (k = 0; k < size; k++)
 	{
 		pos = smallest(array, k, size);
