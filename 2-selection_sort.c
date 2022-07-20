@@ -1,50 +1,38 @@
 #include "sort.h"
 
-/**
-* smallest - small elemnt position
-* @arr: array to sort
-* @k: position
-* @n: number of elements
-* Return: pos
-*/
-
-int smallest(int arr[], size_t k, size_t n)
-{
-	int pos, small;
-	size_t i;
-
-	small = arr[k];
-	pos = k;
-	for (i = k + 1; i < n; i++)
-	{
-		if (arr[i] < small)
-		{
-			small = arr[i];
-			pos = i;
-		}
-	}
-	return (pos);
-}
 
 /**
 * selection_sort - selection sort algorithm
 * @array: array to sort
 * @size: size of array
 */
+
 void selection_sort(int *array, size_t size)
 {
-	int pos, temp;
-	size_t k;
+	int index = 0, min, tmp;
+	size_t i, j;
 
 	if (array == NULL || size < 2)
 		return;
 
-	for (k = 0; k < size; k++)
+	for (i = 0; i < size - 1; i++)
 	{
-		pos = smallest(array, k, size);
-		temp = array[k];
-		array[k] = array[pos];
-		array[pos] = temp;
-		print_array(array, size);
+		min = array[i];
+		for (j = i + 1; j < size; j++)
+		{
+			if (array[j] < min)
+			{
+				min = array[j];
+				index = j;
+			}
+		}
+		if (min != array[i])
+		{
+			tmp = array[i];
+			array[i] = array[index];
+			array[index] = tmp;
+			print_array(array, size);
+		}
 	}
 }
+
